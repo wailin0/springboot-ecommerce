@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<title>Invalid Token</title>
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat%7CRoboto:100,300,400,500,700,900%7CRoboto+Condensed:100,300,400,500,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/icon-font-linea.css">
+	<link rel="stylesheet" type="text/css" href="css/multirange.css">
+	<link rel="gaming age icon" type="image/png" th:href="@{/img/favicon.png}" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="css/themify-icons.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/effect.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/404.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	
+</head>
+<body>
+	   <!-- push menu-->
+ <div class="pushmenu menu-home5">
+    <div class="menu-push">
+        <span class="close-left js-close"><i class="fa fa-times f-20"></i></span>
+        <div class="clearfix"></div>
+        <form role="search" method="get" id="searchform" class="searchform" action="/search">
+            <div>
+                <a href="/"><img src="img/logow.png" width="100" height="38" /></a>
+            </div>
+        </form>
+        <ul class="nav-home5 js-menubar">
+            <li class="level1 active dropdown">
+                <a href="/">Home</a>
+                
+            </li>
+            <li class="level1 active dropdown"><a href="/shop">Shop</a>
+               
+            </li>
+            <li class="level1">
+                <a href="/blog">Blog</a>
+            </li>
+            <li class="level1">
+                <a href="#">Pages</a>
+                <span class="icon-sub-menu"></span>
+                <ul class="menu-level1 js-open-menu">
+                    <li class="level2"><a href="/aboutus" title="About Us ">About Us </a></li>
+                    <li class="level2"><a href="/contact" title="Contact">Contact</a></li>
+                    <li class="level2"><a href="/faq" title="404">FAQ</a></li>
+                </ul>
+            </li>
+            
+            
+            <li class="level1"  th:if="${#authorization.expression('isAuthenticated()')}">
+                <a href="#">Hello! Customer</a>
+                <span class="icon-sub-menu"></span>
+                <ul class="menu-level1 js-open-menu">
+                    <li class="level2"><a href="/account" title="About Us ">Account</a></li>
+                    <li class="level2"><a href="/cart" title="Contact">Cart</a></li>
+                    <li class="level2"><a href="/order" title="Contact">Order</a></li>
+                    <li class="level2"><a href="/logout" title="Contact">Logout</a></li>
+                </ul>
+            </li>
+            
+             <li class="level1" th:if="${#authorization.expression('!isAuthenticated()')}">
+                <a href="#">My Account</a>
+                <span class="icon-sub-menu"></span>
+                <ul class="menu-level1 js-open-menu">
+                    <li class="level2"><a href="/login" title="About Us ">Login </a></li>
+                    <li class="level2"><a href="/register" title="Contact">Register</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+    <!-- end push menu-->
+
+	<!-- Header Box -->
+	<div class="wrappage">
+        <header class="relative full-width">
+            <div class=" container-web relative">
+                <div class=" container">
+                    <div class="row">
+    <div class="clearfix header-content full-width relative">
+        <div class="clearfix icon-menu-bar">
+            <i class="data-icon data-icon-arrows fa fa-bars icon-pushmenu js-push-menu"></i>
+        </div>
+        <div class="clearfix logo">
+          <a href="/"><img alt="Logo" src="img/logob.svg"  width="100" height="" /></a>
+        </div>
+        
+       
+       
+       <!--  only for guest user -->
+       <div th:if="${#authorization.expression('!isAuthenticated()')}">
+        <div class="clearfix cart-website absolute" onclick="showCartBoxDetail()">
+            <h1><span style="font-size: medium;;"></span><span class="fa fa-user-circle-o"></span></h1>
+        </div>
+          
+       <div class="cart-detail-header border">
+           <div class="relative btn-cart-header" style="left: 7px;" >
+                <a href="/login" class=" bold button-hover-red animate-default" >Log In</a>
+            </div>
+            <div class="relative btn-cart-header">
+                <a href="/register" class=" bold button-hover-red animate-default">Register</a>
+            </div>
+        </div>
+        </div>
+         <!--  only for guest user -->
+         
+         
+         
+          <!--  only for login user -->
+          <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <div class="clearfix cart-website absolute" onclick="showCartBoxDetail()">
+            <h1><span style="font-size: medium;;"></span><span style="color: red;" class="fa fa-user-circle-o"></span></h1>
+        </div>
+        
+        <div class="cart-detail-header border">
+            <div class="relative">
+                <div class="product-cart-son ">
+                    <div class="info-product-cart float-left">
+                        <p class="title-product title-hover-black"><a class="animate-default" href="/account"><span style="color: red;" class="fa fa-address-book"></span> Account</a></p>
+                    </div>
+                </div>
+                <div class="product-cart-son">
+                    <div class="info-product-cart float-left">
+                        <p class="title-product title-hover-black"><a class="animate-default" href="/cart"><span style="color: red;" class="fa fa-shopping-cart"></span> Cart</a></p>
+                    </div>
+                </div>
+                <div class="product-cart-son">
+                    <div class="info-product-cart float-left">
+                        <p class="title-product title-hover-black"><a class="animate-default" href="/order"><span style="color: red;" class="fa fa-list"></span> Order</a></p>
+                    </div>
+                </div> 
+            </div>
+            <div class="relative btn-cart-header">
+                <a href="/logout" class="uppercase bold button-hover-red animate-default">Logout</a>
+            </div>
+        </div>
+        </div>
+           <!--  only for login user -->    
+    </div>
+</div>
+                </div>
+            </div>
+           <div class="menu-header-v3 hidden-ipx">
+    <div class="container">
+        <div class="row">
+            <!-- Menu Page -->
+            <div class="menu-header full-width">
+                <ul class="clear-margin">
+                   
+                    <li class="title-hover-red hover-red">
+                        <a class="animate-default" href="/">home</a>
+                        
+                    </li>
+                    <li class="title-hover-red hover-red">
+                        <a class="animate-default" href="/shop">shop</a>
+                       
+                    </li>
+                     <li class="title-hover-red hover-red">
+                        <a class="animate-default" href="/blog">Blog</a>
+                    </li>
+                    <li class="title-hover-red hover-red">
+                        <a class="animate-default" href="#">pages</a>
+                        <ul>
+                            <li class="title-hover-red"><a class="animate-default" href="/aboutus">About Us</a></li>
+                            <li class="title-hover-red"><a class="animate-default" href="/contact">Contact</a></li>
+                            <li class="title-hover-red"><a class="animate-default" href="/faq">FAQ</a></li>
+                        </ul>
+                    </li>
+                  
+                </ul>
+            </div>
+            <!-- End Menu Page -->
+        </div>
+    </div>
+</div>
+           <div class="header-ontop">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="clearfix logo">
+                   <a href="/"><img alt="Logo" src="img/logob.svg"  width="100" height="" /></a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="menu-header">
+                    <ul class="main__menu clear-margin">
+                        <li class="title-hover-red">
+                            <a class="animate-default" href="/">home</a>
+                        </li>
+                        <li class="title-hover-red">
+                            <a class="animate-default" href="/shop">shop</a>
+                            
+                        </li>
+                        <li class="title-hover-red">
+                            <a class="animate-default" href="/blog">blog</a>
+                            
+                        </li>
+                        <li class="title-hover-red">
+                            <a class="animate-default" href="#">pages</a>
+                            <ul>
+                                <li class="title-hover-red"><a class="animate-default" href="/aboutus">About Us</a></li>
+                                <li class="title-hover-red"><a class="animate-default" href="/contact">Contact</a></li>
+                                <li class="title-hover-red"><a class="animate-default" href="/faq">FAQ</a></li>
+                            </ul>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </header>
+	<!-- End Header Box -->
+	<!-- Content Box -->
+	<div class="relative full-width">
+		<!-- Breadcrumb -->
+		<div class="container-web relative">
+			<div class="container">
+				<div class="row">
+					<div class="breadcrumb-web">
+						<ul class="clear-margin">
+							<li class="animate-default title-hover-red"><a href="/">Home</a></li>
+							<li class="animate-default title-hover-red"><a href="#">Invalid Token</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Breadcrumb -->
+		<!-- Content 404 Page -->
+		<div class="relative container-web">
+			<div class="container">
+				<div class="row relative">
+					<div class=" relative content-404">
+						<div class="title-404">
+							
+							<img src="img/icon_404-min.png" alt="Image 404" />
+						</div>
+						<p>Sorry, Your token link is either invalid or expired</p>			
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Content 404 Page -->
+		<!-- Support -->
+		<div class=" support-box full-width bg-red support_box_v2">
+			<div class="container-web">
+				<div class=" container">
+					<div class="row">
+						<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+							<img src="img/icon_free_ship_white-min.png" alt="Icon Free Ship" class="absolute" />
+							<p>free shipping</p>
+							<p>on order over $500</p>
+						</div>
+						<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+							<img src="img/icon_support_white-min.png" alt="Icon Supports" class="absolute">
+							<p>support</p>
+							<p>Everyday 9AM - 9PM</p>
+						</div>
+						<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+							<img src="img/icon_patner_white-min.png" alt="Icon partner" class="absolute">
+							<p>help partner</p>
+							<p>help all aspects</p>
+						</div>
+						<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+							<img src="img/icon_phone_table_white-min.png" alt="Icon Phone Tablet" class="absolute">
+							<p>contact with us</p>
+							<p> <span th:text="${info.phone}"></span> </p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Content Box -->
+	<!-- Footer Box -->
+	<div class=" support-box full-width bg-red support_box_v2">
+    <div class="container-web">
+        <div class=" container">
+            <div class="row">
+                <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+                    <img src="img/icon_free_ship_white-min.png" alt="Icon Free Ship" class="absolute" />
+                    <p>Fast Delivery</p>
+                   <p>2 Days Maximum</p>
+                </div>
+                <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+                    <img src="img/icon_support_white-min.png" alt="Icon Supports" class="absolute">
+                    <p>support</p>
+                    <p>life time support 24/7</p>
+                </div>
+                <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+                    <img src="img/icon_patner_white-min.png" alt="Icon partner" class="absolute">
+                    <p>help partner</p>
+                    <p>help all aspects</p>
+                </div>
+                <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+                    <img src="img/icon_phone_table_white-min.png" alt="Icon Phone Tablet" class="absolute">
+                    <p>contact with us</p>
+                    <p>+95 750 110169</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- End Content Box -->
+<!-- Footer Box -->
+<footer class="relative full-width">
+
+<div class="clearfix container-web relative">
+    <div class=" container clear-padding">
+        <div class="row">
+            <div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
+                <p>my account</p>
+                <ul class="list-footer">
+                    <li><a href="/account">My Account</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/cart">My Cart</a></li>
+                    <li><a href="/order">My Order</a></li>
+                </ul>
+            </div>
+            <div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
+                <p>information</p>
+                <ul class="list-footer">
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/blog">Our Blog</a></li>
+                    <li><a href="/policy">Privacy Policy</a></li>
+                    <li><a href="/aboutus">About Us</a></li>
+                </ul>
+            </div>
+            <div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
+                <p>our services</p>
+                <ul class="list-footer">
+                    <li><a href="#">Product Recall</a></li>
+                    <li><a href="#">Gift Vouchers</a></li>
+                    <li><a href="#">Returns And Exchanges</a></li>
+                    <li><a href="/terms">Terms Of Use</a></li>
+                </ul>
+            </div>
+            <div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
+                <p>contact us</p>
+                <ul class="icon-footer">
+                   <li><i class="fa fa-home" aria-hidden="true"></i> <span th:text="${info.address}"></span></li>
+					<li><i class="fa fa-envelope" aria-hidden="true"></i> <span th:text="${info.email}"></span></li>
+					<li><i class="fa fa-phone" aria-hidden="true"></i> <span th:text="${info.phone}"></span></li>
+                    <li><i class="fa fa-clock-o" aria-hidden="true"></i> 09:00 AM - 09:00 PM</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" bottom-footer full-width">
+    <div class="clearfix container-web">
+        <div class=" container">
+            <div class="row">
+                <div class="clearfix col-md-7 clear-padding copyright">
+                    <p class="clear-margin">Copyright © 2020 by DigiAge. All Rights Reserved.</p>
+                </div>
+                <div class=" col-md-3 col-sm-12 col-xs-12 ">
+                    <a href="#"><img src="img/social_tw-min.png" alt="Icon Social Twiter"></a>
+                    <a href="https://www.facebook.com/gamyanmar"><img src="img/social_fa-min.png" alt="Icon Social Facebook"></a>
+                    <a href="#"><img src="img/social_int-min.png" alt="Icon Social Instagram"></a>
+                    <a href="https://www.youtube.com/channel/UCVWkV-dMWIPuUQGt03uEtZw"><img src="img/social_yt-min.png" alt="Icon Social Youtube" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</footer>
+</div>
+	<!-- End Footer Box -->
+	<script src="js/jquery-3.3.1.min.js" defer=""></script>
+	<script src="js/bootstrap.min.js" defer=""></script>
+	<script src="js/multirange.js" defer=""></script>
+	<script src="js/owl.carousel.min.js" defer=""></script>
+	<script src="js/sync_owl_carousel.js" defer=""></script>
+	<script src="js/scripts.js" defer=""></script>
+</body>
+</html>

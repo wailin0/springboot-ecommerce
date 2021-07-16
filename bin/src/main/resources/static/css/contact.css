@@ -1,0 +1,136 @@
+/*------------------------------------------------------------------
+
+[Table of contents]
+1. Contact Page
+
+-------------------------------------------------------------------*/
+.map-contact{
+	height: 380px;
+}
+.field-wrap label {
+  position: absolute;
+  -webkit-transform: translateY(6px);
+          transform: translateY(6px);
+  left: 13px;
+  transition: all 0.25s ease;
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  font-size: 16px;
+  line-height: 37px;
+  font-weight: normal;
+}
+.field-wrap label .req {
+  margin: 2px;
+  color: #e3171b;
+}
+
+.field-wrap label.active {
+  -webkit-transform: translateY(-9px);
+          transform: translateY(-9px);
+  left: 10px;
+  background: #fff;
+  line-height: 15px;
+}
+.field-wrap label.active .req {
+  opacity: 0;
+}
+
+.field-wrap label.highlight {
+  
+}
+.field-wrap input, .field-wrap textarea {
+  font-size: 17px;
+  display: block;
+  width: 100%;
+  padding: 0 10px;
+  color: #5a5a5a;
+  background: none;
+  background-image: none;
+  border: 1px solid #e9e9e9;
+  border-radius: 0;
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.field-wrap input{
+	height: 48px;
+}
+.field-wrap input:focus, .field-wrap textarea:focus {
+  outline: 0;
+  border-color: #333;
+}
+
+.field-wrap textarea {
+  border: 1px solid #dedede;
+  padding: 10px;
+  resize: vertical;
+}
+
+.field-wrap {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.top-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.top-row > div {
+  float: left;
+  width: 48%;
+  margin-right: 4%;
+}
+.top-row > div:last-child {
+  margin: 0;
+}
+.forgot {
+  margin-top: -20px;
+  text-align: right;
+}
+.title-contact{
+	font-size: 24px;
+}
+.left-row-info-contact {
+    float: left;
+    width: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.right-row-info-contact {
+    width: calc(100% - 100px);
+    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+.right-row-info-contact p{
+	font-size: 16px;
+	line-height: 24px;
+	margin: 0;
+}
+.name-row-contact{
+	margin: 5px 0 !important;
+}
+.right-row-info-contact a{
+	color: #0072bc;
+}
+.form-contact button{
+	width: 200px;
+	line-height: 50px;
+	background: #e3171b;
+	color: #fff;
+	font-size: 16px;
+	text-transform: uppercase;
+	border:none;
+	transition: 0.5s ease;
+	outline: none;
+	-o-transition: 0.5s ease;
+	-moz-transition: 0.5s ease;
+	-webkit-transition: 0.5s ease;
+}
+.footer-from-address {
+    margin: 50px -15px;
+}
+.form-contact{
+	margin: 50px 0 0 0;
+}

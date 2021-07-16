@@ -1,0 +1,41 @@
+/*------------------------------------------------------------------
+
+[Table of contents]
+1. About Page
+
+-------------------------------------------------------------------*/
+.text-intro {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 40px;
+    margin: 0 auto;
+    float: none;
+    text-align: center;
+}
+.total-number-about {
+    text-align: center;
+    margin: 70px 0;
+}
+.total-number-about p:nth-of-type(1),.total-number-about p:nth-of-type(1){
+	line-height: 36px;
+}
+.total-number-about p:nth-of-type(1){
+	font-size: 48px;
+}
+.total-number-about p:nth-of-type(2){
+	font-size: 16px;
+}
+.list-lib-image-about ul li {
+    list-style: none;
+    width: calc(100% / 4);
+    float: left;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.list-lib-image-about ul li img,.banner-about img{
+	max-width: 100%;
+	max-height: 100%;
+}
+.list-lib-image-about{
+	margin: 0 0 50px 0;
+}

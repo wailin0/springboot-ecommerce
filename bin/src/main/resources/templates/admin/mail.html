@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MailApp" sec:authorize="hasRole('ROLE_ADMIN')">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="admin-themes-lab">
+    <meta name="author" content="themes-lab">
+    <link rel="gaming age icon" type="image/png" th:href="@{/img/favicon.png}" />
+    <title>Make Mail Box</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+    <link href="../admin/css/style.css" rel="stylesheet">
+   
+    <link href="../admin/css/ui.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+ 
+  </head>
+  
+  <!-- BEGIN BODY -->
+  <body class="sidebar-condensed fixed-topbar fixed-sidebar theme-sdtl color-default mailbox">
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <section>
+      <!-- BEGIN SIDEBAR -->
+      <div class="sidebar">
+        <div class="logopanel">
+          <h1>
+           <img src="../admin/images/logo/logo-white.png" width="91" height="28" />
+            <a href="/admin"></a>
+          </h1>
+        </div>
+        <div class="sidebar-inner">
+       
+          <ul class="nav nav-sidebar">
+            <li><a href="/admin"><i class="fa fa-desktop"></i><span>Dashboard</span></a></li>
+			<li class="nav-parent">
+              <a href="#"><i class="fa fa-comments-o"></i><span>Info</span> <span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li><a href="/admin/info"> Company</a></li>
+                <li><a href="/admin/faq"> FAQ</a></li>
+              </ul>
+            </li>
+			<li class="nav-parent">
+              <a href="#"><i class="fa fa-cart-plus"></i><span>Product</span> <span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li><a  href="/admin/game"> Game</a></li>
+                <li><a  href="/admin/giftcard"> Gift Card</a></li>
+                <li><a  href="/admin/merchandise"> Merchandise</a></li>
+              </ul>
+            </li>
+            <li class="nav-parent">
+              <a href="#"><i class="fa fa-opencart"></i><span>Order</span> <span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li><a  href="/admin/order"> New</a></li>
+                <li><a href="/admin/delivering"> Delivering</a></li>
+                <li><a href="/admin/delivered"> Delivered</a></li>
+              </ul>
+            </li>
+            <li class="nav-parent active" sec:authorize="hasRole('ROLE_ADMIN')">
+              <a href="#"><i class="fa fa-envelope-o"></i><span>Mail</span> <span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li class="active"><a  href="/admin/mail"> Inbox</a></li>
+              </ul>
+            </li>
+           
+            <li class="nav-parent">
+              <a href=""><i class="fa fa-edit"></i><span>Blog </span><span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li><a href="/admin/blog"> Blog</a></li>
+              </ul>
+            </li>
+            <li class="nav-parent" sec:authorize="hasRole('ROLE_ADMIN')">
+              <a href=""><i class="fa fa-user-o"></i><span>User </span><span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li><a href="/admin/customer"> Customer</a></li>
+                <li class="active"><a href="/admin/mod"> Moderator</a></li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+          <div class="sidebar-footer clearfix">
+            <a class="pull-left footer-settings" href="#" data-rel="tooltip" data-placement="top" data-original-title="Settings">
+            <i class="icon-settings"></i></a>
+            <a class="pull-left toggle_fullscreen" href="#" data-rel="tooltip" data-placement="top" data-original-title="Fullscreen">
+            <i class="icon-size-fullscreen"></i></a>
+            <a class="pull-left" href="user-lockscreen.html" data-rel="tooltip" data-placement="top" data-original-title="Lockscreen">
+            <i class="icon-lock"></i></a>
+            <a class="pull-left btn-effect" href="/logout" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="Logout">
+            <i class="icon-power"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- END SIDEBAR -->
+      <div class="main-content">
+       <!-- BEGIN TOPBAR -->
+        <div class="topbar">
+          <div class="header-left">
+            <div class="topnav">
+              <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>
+              
+            </div>
+          </div>
+          <div class="header-right">
+            <ul class="header-menu nav navbar-nav">
+             
+              <li class="dropdown" id="user-header">
+                <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+               
+                <span >Hi, <span th:text="${name}"></span></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/account"><i class="fa fa-user"></i><span>My Profile</span></a>
+                  </li>
+               
+                  <li>
+                    <a href="/account"><i class="fa fa-cog"></i><span>Account Settings</span></a>
+                  </li>
+                  <li>
+                    <a href="/logout"><i class="fa fa-power-off"></i><span>Logout</span></a>
+                  </li>
+                </ul>
+              </li>
+              <!-- END USER DROPDOWN -->
+           
+            </ul>
+          </div>
+          <!-- header-right -->
+        </div>
+        <!-- END TOPBAR -->
+        
+        <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content page-app mailbox">
+          <section class="app">
+            <aside class="aside-md emails-list">
+              <section>
+                <div class="mailbox-page clearfix">
+                  <h1 class="pull-left">Inbox</h1>
+                  <div class="append-icon">
+                    <input type="text" class="form-control form-white pull-right" id="email-search" placeholder="Search...">
+                    <i class="icon-magnifier"></i>
+                  </div>
+                </div>
+                <ul class="nav nav-tabs text-right">
+                  <li class="active f-right"><a href="#recent" data-toggle="tab">Recent</a></li>
+                 
+                </ul>
+                <div class="tab-content" ng-controller="MailController">
+                  
+                  <div class="tab-pane fade in active" id="recent">
+                    <div class="messages-list withScroll show-scroll" data-padding="180" data-height="window">
+                    
+                     
+                      <div class="message-item media" ng-repeat="mail in mail">
+                        <div class="media">
+                          
+                          <div class="media-body">
+                            <div class="sender">{{ mail.sender }}</div>
+                            <div class="subject"><span class="subject-text"> {{ mail.email }} </span></div>
+                            <div class="date">{{ mail.sentDate }}  </div>
+                            <div class="email-content">
+                            	 Sender Information ,	  <br/>
+                            	 Name   - <b>{{ mail.sender }}</b> <br/>
+                            	 Phone  - <b>{{ mail.phone }}</b> <br/>
+                            	 Email  : <b>{{ mail.email }}</b> <br/>
+                            	 <br/>
+                            	 Messages , <br/>
+                              <p>	{{ mail.message }} </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </aside>
+            <div class="email-details">
+              <section>
+                <div class="email-subject">
+                  <h1>Email, Phone</h1>
+                  <div class="clearfix">
+                    <div class="go-back-list"><i data-rel="tooltip" data-placement="bottom" data-original-title="Back to email list" class="icon-arrow-left"></i></div>
+                    <p>from <strong><span class="sender">Name</span></strong> &bull; <span class="date">Date</span></p>
+                    
+                  </div>
+                </div>
+                <div class="email-details-inner withScroll" data-height="window" data-padding="155">
+                  <div class="email-content">
+                    <p>Messages body here</p>
+                   
+                  </div>
+                
+                </div>
+              </section>
+            </div>
+          </section>
+          <div class="footer">
+            <div class="copyright">
+              <p class="pull-left sm-pull-reset">
+                <span>Copyright <span class="copyright">©</span> 2020 </span>
+                <span>Digi Age</span>.
+                <span>All rights reserved. </span>
+              </p>
+              <p class="pull-right sm-pull-reset">
+                <span><a href="#" class="m-r-10">Support</a> | <a href="#" class="m-l-10 m-r-10">Terms of use</a> | <a href="#" class="m-l-10">Privacy Policy</a></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END PAGE CONTENT -->
+      </div>
+      <!-- END MAIN CONTENT -->
+    </section>
+    
+    
+    <!-- BEGIN PRELOADER -->
+    <div class="loader-overlay">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
+    <!-- END PRELOADER -->
+    <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../admin/js/jquery-migrate-3.0.0.min.js"></script>
+   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <script src="../admin/js/application.js"></script> <!-- Main Application Script -->
+
+   
+    <script src="../admin/js/mailbox.js"></script>
+    <!-- END PAGE SCRIPTS -->
+    <script src="../admin/js/layout.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+    <script type="text/javascript">
+    
+    var app = angular.module('MailApp', []);
+    
+    app.controller('MailController', function($scope, $http) {
+
+ 
+  	  $http.get('/admin/rest/mail').
+        then(function(response) {
+            $scope.mail = response.data;
+        });
+    });
+    
+    </script>
+    
+    
+  </body>
+</html>

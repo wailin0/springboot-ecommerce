@@ -1,0 +1,368 @@
+<html xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="admin-themes-lab">
+    <meta name="author" content="themes-lab">
+    <link rel="gaming age icon" type="image/png" th:href="@{/img/favicon.png}" />
+    <title>Admin Gift Card Product</title>
+    <link href="../admin/css/style.css" rel="stylesheet">
+    <link href="../admin/css/ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+     <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="../admin/css/mycss.css" rel="stylesheet">
+   
+  </head>
+
+  <body class="sidebar-condensed fixed-topbar fixed-sidebar theme-sdtl color-default dashboard">
+    <section>
+     <!-- BEGIN SIDEBAR -->
+      <div class="sidebar">
+        <div class="logopanel">
+          <h1>
+            <img src="../admin/images/logo/logo-white.png" width="91" height="28" />
+            <a href="/admin"></a>
+          </h1>
+        </div>
+        <div class="sidebar-inner">
+       
+          
+          <ul class="nav nav-sidebar">
+            <li><a href="/admin"><i class="fa fa-desktop"></i><span>Dashboard</span></a></li>
+			<li class="nav-parent">
+              <a href="#"><i class="fa fa-comments-o"></i><span>Info</span> <span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li><a href="/admin/info"> Company</a></li>
+                <li><a href="/admin/faq"> FAQ</a></li>
+              </ul>
+            </li>
+			<li class="nav-parent active">
+              <a href="#"><i class="fa fa-cart-plus"></i><span>Product</span> <span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li ><a  href="/admin/game"> Game</a></li>
+                <li  class="active"><a href="/admin/giftcard"> Gift Card</a></li>
+                <li><a href="/admin/merchandise"> Merchandise</a></li>
+              </ul>
+            </li>
+            <li class="nav-parent">
+              <a href="#"><i class="fa fa-opencart"></i><span>Order</span> <span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li><a  href="/admin/order"> New</a></li>
+                <li><a href="/admin/delivering"> Delivering</a></li>
+                <li><a href="/admin/delivered"> Delivered</a></li>
+              </ul>
+            </li>
+            <li class="nav-parent" sec:authorize="hasRole('ROLE_ADMIN')">
+              <a href="#"><i class="fa fa-envelope-o"></i><span>Mail</span> <span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li><a  href="/admin/mail"> Inbox</a></li>
+              </ul>
+            </li>
+           
+            <li class="nav-parent">
+              <a href=""><i class="fa fa-edit"></i><span>Blog </span><span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li><a href="/admin/blog"> Blog</a></li>
+              </ul>
+            </li>
+            <li class="nav-parent" sec:authorize="hasRole('ROLE_ADMIN')">
+              <a href=""><i class="fa fa-user-o"></i><span>User </span><span class="fa arrow"></span></a>
+              <ul class="children collapse">
+                <li><a href="/admin/customer"> Customer</a></li>
+                <li><a href="/admin/mod"> Moderator</a></li>
+              </ul>
+            </li>
+          </ul>
+      
+      
+          <div class="sidebar-footer clearfix">
+            <a class="pull-left footer-settings" href="#" data-rel="tooltip" data-placement="top" data-original-title="Settings">
+            <i class="fa fa-cog"></i></a>
+            <a class="pull-left toggle_fullscreen" href="#" data-rel="tooltip" data-placement="top" data-original-title="Fullscreen">
+            <i class="fa fa-crosshairs"></i></a>
+            <a class="pull-left" href="/admin/lock" data-rel="tooltip" data-placement="top" data-original-title="Lockscreen">
+            <i class="fa fa-lock"></i></a>
+            <a class="pull-left btn-effect" href="/logout" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="Logout">
+            <i class="fa fa-power-off"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- END SIDEBAR -->
+      <div class="main-content">
+        <!-- BEGIN TOPBAR -->
+        <div class="topbar">
+          <div class="header-left">
+            <div class="topnav">
+              <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>
+              
+            </div>
+          </div>
+          <div class="header-right">
+            <ul class="header-menu nav navbar-nav">
+             
+              <li class="dropdown" id="user-header">
+                <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+               
+                <span >Hi, <span th:text="${name}"></span></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/account"><i class="fa fa-user"></i><span>My Profile</span></a>
+                  </li>
+               
+                  <li>
+                    <a href="/account"><i class="fa fa-cog"></i><span>Account Settings</span></a>
+                  </li>
+                  <li>
+                    <a href="/logout"><i class="fa fa-power-off"></i><span>Logout</span></a>
+                  </li>
+                </ul>
+              </li>
+              <!-- END USER DROPDOWN -->
+           
+            </ul>
+          </div>
+          <!-- header-right -->
+        </div>
+        <!-- END TOPBAR -->
+        <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content page-thin">
+         
+         
+         
+       <!--  create prodcut model start -->
+       <div class="modal fade" id="createProduct" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Product</h4>
+        </div>
+        <div class="modal-body">
+
+	  <form class="form-horizontal" th:object="${productForm}" action="/admin/saveProduct" method="post" enctype="multipart/form-data">
+	  <div class="form-group">
+	      <label class="control-label col-sm-2" >image:</label>
+	      <div class="col-sm-10">
+	      recommended size : 270 x 270
+	        <input type="file" class="form-control" name="img"  required accept="image/*" />
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2" >Title:</label>
+	      <div class="col-sm-10">
+	        <input type="text" class="form-control" name="name" placeholder="card name (notice: dont include square brackets [] )" required>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2" >Category:</label>
+	      <div class="col-sm-10">
+	        <select name="type" required>
+	        <option value="steam">Steam</option>
+	        <option value="googleplay">GooglePlay</option>
+	        <option value="itunes">iTunes</option>
+	        <option value="psn">PlayStation</option>
+	        <option value="xbox">Xbox</option>
+	        <option value="nintendo">Nintendo</option>
+	        </select>
+	      </div>
+	    </div>
+	
+	        <input type="hidden" class="form-control" name="category" value="giftCard">
+	        
+	    <div class="form-group">
+	      <label class="control-label col-sm-2">Price:</label>
+	      <div class="col-sm-10">          
+	        <input type="number" min="0" class="form-control" placeholder="price" name="price" required>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2">Stock:</label>
+	      <div class="col-sm-10">          
+	        <input type="number" min="0" class="form-control" placeholder="stock number" name="stock" required>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2">Description:</label>
+	      <div class="col-sm-10">          
+	        <textarea class="form-control" placeholder="brief details about product" name="description" rows="5" required></textarea>
+	      </div>
+	    </div>
+	    <div class="form-group">        
+	      <div class="col-sm-offset-2 col-sm-10">
+	        <button type="submit" class="btn btn-primary">Save</button>
+	        <button type="reset"  class="btn btn-success">Reset</button>
+	      </div>
+	    </div>
+	  </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div> 
+    </div>
+    </div>  
+            <!--  create prodcut model end -->
+        
+        
+         
+         
+         
+           <!--  edit prodcut model start -->  
+     <div class="modal fade" id="editProduct" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Product</h4>
+        </div>
+        <div class="modal-body">
+
+	  <form class="form-horizontal" id="editForm" action="" th:object="${product}"  method="post" enctype="multipart/form-data" >
+	  <div class="form-group">
+	      <label class="control-label col-sm-2" >image:</label>
+	      <div class="col-sm-10">
+	      recommended size : 270 x 270
+	        <input type="file"  class="form-control" name="img" accept="image/*"  required="required"/>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2" >Name:</label>
+	      <div class="col-sm-10">
+	        <input type="text" class="form-control" name="name" required>
+	      </div>
+	    </div>
+       <div class="form-group">
+	      <label class="control-label col-sm-2" >Category:</label>
+	      <div class="col-sm-10">
+	        <select name="type" required>
+	        <option value="steam">Steam</option>
+	        <option value="googleplay">GooglePlay</option>
+	        <option value="itunes">iTunes</option>
+	        <option value="psn">PlayStation</option>
+	        <option value="xbox">Xbox</option>
+	        <option value="nintendo">Nintendo</option>
+	        </select>
+	      </div>
+	    </div>
+			<input type="hidden" class="form-control" name="category" value="giftCard">
+
+	    <div class="form-group">
+	      <label class="control-label col-sm-2">Price:</label>
+	      <div class="col-sm-10">          
+	        <input type="number" min="0" class="form-control" name="price" required>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2">Stock:</label>
+	      <div class="col-sm-10">          
+	        <input type="number" min="0" class="form-control" name="stock" required>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2">Description:</label>
+	      <div class="col-sm-10">          
+	        <textarea class="form-control" placeholder="brief details about product" name="description" rows="5" required></textarea>
+	      </div>
+	    </div>
+	    <div class="form-group">        
+	      <div class="col-sm-offset-2 col-sm-10">
+	        <button type="submit" id="edit" class="btn btn-primary">Save</button>
+	        <a id="deleteLink"><button type="button" id="delete" class="btn btn-danger">Delete Product</button></a>
+	      </div>
+	    </div>
+	  </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div> 
+    </div>
+    </div>
+          <!--  edit prodcut model end -->   
+         
+         
+         
+                  <div th:if="${success}">
+  			<div class="alert alert-success alert-dismissible">
+  			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  			<span  th:text="${success}"></span>
+  			</div>
+    	 </div>
+    	 
+         
+         
+       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createProduct">Add New Product</button>  
+         <br/>
+         <br/>
+  <table id="table" class="display" style="width:100%">
+        <thead>
+            <tr>
+      		    <th></th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Manage</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+            	<th></th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Manage</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+         
+         
+          <div class="footer">
+            <div class="copyright">
+              <p class="pull-left sm-pull-reset">
+                <span>Copyright <span class="copyright">©</span> 2020 </span>
+                <span>Digi Age</span>.
+                <span>All rights reserved. </span>
+              </p>
+              <p class="pull-right sm-pull-reset">
+                <span><a href="#" class="m-r-10">Support</a> | <a href="#" class="m-l-10 m-r-10">Terms of use</a> | <a href="#" class="m-l-10">Privacy Policy</a></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END PAGE CONTENT -->
+      </div>
+      <!-- END MAIN CONTENT -->
+
+
+    <!-- BEGIN PRELOADER -->
+    <div class="loader-overlay">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
+    <!-- END PRELOADER -->
+    <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../admin/js/jquery-migrate-3.0.0.min.js"></script>
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   
+  	<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+    <script src="../admin/js/application.js"></script> <!-- Main Application Script -->
+
+    <!-- END PAGE SCRIPT -->
+    <script src="../admin/js/layout.js"></script>
+    <script src="../admin/js/giftCard.js"></script>
+  </body>
+</html>

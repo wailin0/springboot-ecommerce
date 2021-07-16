@@ -1,0 +1,56 @@
+/*------------------------------------------------------------------
+
+[Table of contents]
+1. 404 Page
+
+-------------------------------------------------------------------*/
+.content-404 {
+    width: 100%;
+    max-width: 830px;
+    margin: 80px auto 120px;
+    text-align: center;
+}
+.title-404 {
+    font-size: 15em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #b2b2b2;
+    font-weight: bold;
+    height: 200px;
+}   
+.title-404 p{
+
+}
+.title-404 img{
+	height: 162px;
+	width: 162px;
+}
+.content-404 > p:nth-of-type(1){
+	font-size: 36px;
+}
+.btn-back {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+.btn-back p:nth-of-type(1) {
+    font-size: 18px;
+    font-weight: 400;
+    margin:0 30px 0 0;
+}
+.btn-back a {
+    display: block;
+    line-height: 40px;
+    width: 150px;
+    color: #fff;
+    background: #eb1a21;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.btn-back a:hover{
+	background: #e22d33;
+	text-decoration: none;
+}

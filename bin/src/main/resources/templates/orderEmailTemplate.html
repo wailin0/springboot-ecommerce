@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="/css/style.css" rel="stylesheet" />
+
+<style>
+	table {
+	border-collapse: collapse;
+	}
+	
+	table, th, td {
+	border:1px solid black;}
+</style>
+</head>
+<body>
+<p>Dear <span th:text="${user.username}"></span>,</p>
+<br/>
+<p>Thank you for shopping from Gaming Age</p>
+<p> Here is your order detail:</p>
+
+
+<h3><strong>Order Summary</strong></h3>
+<table>
+<thead>
+	<tr>
+		<td><strong>Item Name</strong></td>
+		<td class="text-center"><strong>Item Price</strong></td>
+		<td class="text-center"><strong>Item Quantity</strong></td>
+		<td class="text-right"><strong>Total</strong></td>
+	</tr>
+</thead>
+<tbody>
+	<tr th:each="cartItem : ${cartItemList}">
+		<td><span data-th-text="${cartItem.product.name}"></span></td>
+		<td class="text-center" data-th-text="${cartItem.product.price}"></td>
+		<td class="text-center" data-th-text="${cartItem.qty}"></td>
+		<td class="text-right" data-th-text="${cartItem.subtotal}"></td>
+	</tr>
+	<tr>
+		<td class="emptyrow"></td>
+		<td class="emptyrow"></td>
+		<td class="emptyrow text-center"><strong>Total Price</strong></td>
+		<td class="emptyrow text-right" data-th-text="${#numbers.formatDecimal(order.total,0,2)}"></td>
+	</tr>
+
+</tbody>
+</table>
+
+<br/>
+
+<img src="https://res.cloudinary.com/gamingage/image/upload/v1591923854/logo_ein3rd.svg" width="500" height="100" />
+
+</body>
+</html>
