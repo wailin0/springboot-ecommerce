@@ -31,4 +31,11 @@ Alternatively you can use the Spring Boot Maven plugin like so:
 From the command line:
 
 	mvn spring-boot:run
+        
+	
+main page:
+http://localhost:8080
+
+admin page:
+http://localhost:8080/admin
 	
