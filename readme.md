@@ -1,4 +1,4 @@
-#### open sourced production ready ecommerce website made with Java(Spring boot) and fully integrated with AWS services (RDS,SES,S3)
+#### production ready ecommerce website made with Java(Spring boot) and fully integrated with AWS services (RDS,SES,S3)
 ### Backend
 * Spring Boot
 * Spring Security
